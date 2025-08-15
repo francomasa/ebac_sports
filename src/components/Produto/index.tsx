@@ -13,12 +13,12 @@ export const paraReal = (valor: number) =>
     valor
   )
 
-const ProdutoItem = (produto: Produto[]) => {
+const ProdutoItem = (produto: Produto) => {
   const produtos = useSelector((state: RootReducer) => state.carrinho.itens)
   const listaFavoritos = useSelector(
     (state: RootReducer) => state.favoritos.itens
   )
-  const estaNosFavoritos = false
+  const estaNosFavoritos = listaFavoritos.find((p) => p.id === produto.id)
   const dispatch = useDispatch()
 
   const aoComprar = () => {
@@ -38,9 +38,9 @@ const ProdutoItem = (produto: Produto[]) => {
         <strong>{paraReal(produto.preco)}</strong>
       </S.Prices>
       <S.BtnComprar onClick={favoritar} type="button">
-        {/* {estaNosFavoritos
+        {estaNosFavoritos
           ? '- Remover dos favoritos'
-          : '+ Adicionar aos favoritos'} */}
+          : '+ Adicionar aos favoritos'}
       </S.BtnComprar>
       <S.BtnComprar
         onClick={() => dispatch(addCarrinho(produto))}
