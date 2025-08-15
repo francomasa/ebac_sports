@@ -13,11 +13,11 @@ export const paraReal = (valor: number) =>
     valor
   )
 
-const ProdutoItem = (produto: Produto) => {
+const ProdutoItem = (produto: Produto[]) => {
   const produtos = useSelector((state: RootReducer) => state.carrinho.itens)
-  // const listaFavoritos = useSelector(
-  //   (state: RootReducer) => state.favoritos.itens
-  // )
+  const listaFavoritos = useSelector(
+    (state: RootReducer) => state.favoritos.itens
+  )
   const estaNosFavoritos = false
   const dispatch = useDispatch()
 
@@ -42,7 +42,10 @@ const ProdutoItem = (produto: Produto) => {
           ? '- Remover dos favoritos'
           : '+ Adicionar aos favoritos'} */}
       </S.BtnComprar>
-      <S.BtnComprar onClick={aoComprar} type="button">
+      <S.BtnComprar
+        onClick={() => dispatch(addCarrinho(produto))}
+        type="button"
+      >
         Adicionar ao carrinho
       </S.BtnComprar>
     </S.Produto>
