@@ -15,14 +15,12 @@ export const paraReal = (valor: number) =>
 
 //const ProdutoItem = (produto: Produto) => {
 const ProdutoItem = (prop: { produto: Produto }) => {
+  const dispatch = useDispatch()
   const { produto } = prop
-
-  //const produtos = useSelector((state: RootReducer) => state.carrinho.itens)
   const listaFavoritos = useSelector(
     (state: RootReducer) => state.favoritos.itens
   )
   const estaNosFavoritos = listaFavoritos.find((p) => p.id === produto.id)
-  const dispatch = useDispatch()
 
   const favoritar = () => {
     dispatch(addFavoritos(produto))
