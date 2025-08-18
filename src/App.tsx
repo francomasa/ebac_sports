@@ -11,7 +11,6 @@ export type Produto = {
   nome: string
   preco: number
   imagem: string
-  favorito: false
 }
 export type Favoritos = {
   produtos: Produto[]
